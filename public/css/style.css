@@ -1,0 +1,33 @@
+
+#map {
+    height: 400px;
+}
+
+.content {
+    margin: 20px;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #676b6f;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+

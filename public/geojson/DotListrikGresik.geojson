@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "DotListrikGresik",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAMOBJ": null, "JNSPLS": 4, "FCODE": null, "DAYA": 0.0, "REMARK": "Pembangkit Listrik Tenaga Nuklir", "SRS_ID": null, "LCODE": "HB0040", "METADATA": null }, "geometry": { "type": "Point", "coordinates": [ 112.601937950000092, -7.344747393999967, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "JNSPLS": 999, "FCODE": null, "DAYA": 0.0, "REMARK": "Pembangkit Listrik Tenaga Lainnya", "SRS_ID": null, "LCODE": "HB0040", "METADATA": null }, "geometry": { "type": "Point", "coordinates": [ 112.640673983000056, -7.15484096299997, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "JNSPLS": 2, "FCODE": null, "DAYA": 0.0, "REMARK": "Pembangkit Listrik Tenaga Uap", "SRS_ID": null, "LCODE": "HB0040", "METADATA": null }, "geometry": { "type": "Point", "coordinates": [ 112.66057877500009, -7.166606293999962, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "JNSPLS": 999, "FCODE": null, "DAYA": 0.0, "REMARK": "Pembangkit Listrik Tenaga Lainnya", "SRS_ID": null, "LCODE": "HB0040", "METADATA": null }, "geometry": { "type": "Point", "coordinates": [ 112.644352185000116, -7.191162461999966, 0.0 ] } }
+]
+}

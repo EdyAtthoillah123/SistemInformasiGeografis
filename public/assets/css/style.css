@@ -1,0 +1,96 @@
+.sidebar {
+    background-color: #28a745;
+    color: #fff;
+    padding: 20px;
+    height: 100vh;
+}
+
+.main-content {
+    padding: 20px;
+    overflow: hidden;
+}
+
+#viewDiv {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.logo-name-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width: 50%;
+    height: auto;
+}
+
+.custom-border {
+    border: 3px solid gray;
+}
+
+.name {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#mapViewDiv {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+p {
+    font-size: 10px;
+}
+
+input {
+    font-size: 10px;
+}
+
+.custom-border {
+    border: 3px solid gray;
+}
+
+
+.legend-container {
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+    z-index: 1;
+}
+
+.toggle-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.icon-img{
+    width: 10px;
+    height: 10px;
+}
