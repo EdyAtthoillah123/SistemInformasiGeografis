@@ -25,13 +25,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
-    {{-- cdn --}}
     <link rel="stylesheet" href="https://jsdev.arcgis.com/4.26/esri/themes/light/main.css">
     <script src="https://jsdev.arcgis.com/4.26/"></script>
-    {{-- module --}}
-
-    {{-- js track --}}
     <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.26/"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -124,7 +119,8 @@
                         <span class="layer-label" style="font-size: 10px;">Perkantoran</span>
                     </label>
                 </div>
-                <div id="viewDiv" class="custom-border"></div>
+                {{-- <div id="viewDiv" class="custom-border"></div> --}}
+                <div id="viewDiv"></div>
             </div>
         </div>
     </div>
@@ -181,23 +177,20 @@
         const view = new MapView({
             map: map,
             center: [112.6598194, -7.1893516],
-            zoom: 10,
+            zoom: 11,
             container: "viewDiv"
         });
 
 
         view.on("pointer-move", function(event) {
-            // Mendapatkan koordinat lokasi dari event
             var screenPoint = {
                 x: event.x,
                 y: event.y
             };
             view.hitTest(screenPoint).then(function(response) {
-                // Mendapatkan lokasi peta dari hasil hit test
                 var result = response.results[0];
                 if (result) {
                     var mapPoint = result.mapPoint;
-                    // Memperbarui elemen HTML dengan nilai longitude dan latitude
                     document.getElementById("longitudeInfo").innerHTML = "Longitude: " +
                         mapPoint.longitude.toFixed(6);
                     document.getElementById("latitudeInfo").innerHTML = "Latitude: " + mapPoint
@@ -207,17 +200,14 @@
         });
 
         view.on("click", function(event) {
-            // Mendapatkan koordinat lokasi dari event
             var screenPoint = {
                 x: event.x,
                 y: event.y
             };
             view.hitTest(screenPoint).then(function(response) {
-                // Mendapatkan lokasi peta dari hasil hit test
                 var result = response.results[0];
                 if (result) {
                     var mapPoint = result.mapPoint;
-                    // Melakukan reverse geocoding menggunakan layanan Nominatim
                     var url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" +
                         mapPoint.latitude + "&lon=" + mapPoint.longitude;
                     fetch(url)
@@ -226,18 +216,15 @@
                         })
                         .then(function(data) {
                             if (data && data.display_name) {
-                                // Memperbarui elemen HTML dengan nama daerah
                                 document.getElementById("locationInfo").innerHTML =
                                     "Lokasi: " + data.display_name;
                             } else {
-                                // Jika tidak ada alamat yang ditemukan, menampilkan pesan informasi
                                 document.getElementById("locationInfo").innerHTML =
                                     "Lokasi tidak ditemukan.";
                             }
                         })
                         .catch(function(error) {
                             console.error("Terjadi kesalahan dalam geokode:", error);
-                            // Jika terjadi kesalahan dalam geokode, menampilkan pesan informasi
                             document.getElementById("locationInfo").innerHTML =
                                 "Terjadi kesalahan dalam geokode.";
                         });
@@ -245,11 +232,8 @@
             });
         });
 
-        // Event handler untuk peristiwa mouse-wheel
         view.on("mouse-wheel", function(event) {
-            // Mendapatkan lokasi peta saat ini
             var mapPoint = view.center;
-            // Memperbarui elemen HTML dengan nilai longitude dan latitude
             document.getElementById("longitudeInfo").innerHTML = "Longitude: " + mapPoint.longitude
                 .toFixed(6);
             document.getElementById("latitudeInfo").innerHTML = "Latitude: " + mapPoint.latitude
@@ -268,16 +252,15 @@
         });
         view.ui.add(locate, "top-left");
 
-        const geojsonLayer1 = new GeoJSONLayer({
+        var geojsonLayer1 = new GeoJSONLayer({
             url: "geojson/DesaGresik.geojson",
             renderer: {
                 type: "simple", // Menggunakan SimpleRenderer
                 symbol: {
                     type: "simple-fill",
-                    // rgba(104, 247, 145, 0.8)
-                    color: [0, 255, 0, 0.5], // Ganti warna di sini
+                    color: [0, 255, 0, 0], // Mengatur fill transparan (alpha: 0)
                     outline: {
-                        color: [255, 255, 255, 0.8], // Warna outline (pinggiran) jika diperlukan
+                        color: [255, 0, 0, 1], // Mengatur outline berwarna merah (alpha: 1)
                         width: 0.5 // Lebar outline
                     }
                 }
@@ -291,11 +274,12 @@
                 type: "simple",
                 symbol: {
                     type: "simple-line",
-                    color: "rgba(255,102,102,1.000)",
+                    color: "rgba(128, 128, 128, 1.0)", // Mengatur warna menjadi abu-abu
                     width: 0.8
                 }
             }
         });
+
 
         const geojsonLayer3 = new GeoJSONLayer({
             url: "geojson/DotListrikGresik.geojson",
@@ -441,7 +425,6 @@
         };
 
         // Wringin Anom Location: -7.7330336, 114.2476263
-        // -7.3898854, 112.5205706
         const pointCoordinates14 = {
             longitude: 112.5205706,
             latitude: -7.3898854
@@ -627,27 +610,19 @@
             }
         });
 
-        // map.add(featureLayer);
         const layerSelector = document.getElementById('layerSelector');
 
-        // Get all the checkboxes within the layer selector
         const checkboxes = layerSelector.querySelectorAll('input[type="checkbox"]');
 
-        // Function to handle layer visibility based on checkbox state
         function handleLayerVisibility() {
-            // Loop through all checkboxes
             checkboxes.forEach((checkbox) => {
                 const layerName = checkbox.value;
-                const layer = eval(layerName); // Evaluate the layer name as a variable
-
-                // Check if the checkbox is checked
+                const layer = eval(layerName);
                 if (checkbox.checked) {
-                    // Add the layer to the map if it's not already added
                     if (!map.layers.includes(layer)) {
                         map.add(layer);
                     }
                 } else {
-                    // Remove the layer from the map if it's added
                     if (map.findLayerById(layer.id)) {
                         map.remove(layer);
                     }
@@ -655,12 +630,9 @@
             });
         }
 
-        // Add event listener to checkboxes for handling layer visibility
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener('change', handleLayerVisibility);
         });
-
-        // Initially show all layers
         handleLayerVisibility();
         map.add(graphicLayer);
     });
