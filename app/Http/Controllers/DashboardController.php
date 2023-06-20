@@ -11,14 +11,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $geojsonData = File::get(public_path('geojson/kabgresik.geojson'));
-
-        return view('dashboard', compact('geojsonData'));
+        return view('index');
     }
 
 
-    public function arcgis(){
-        return view('arcgisscript');
+    public function dashboard(){
+        $geojsonData = File::get(public_path('geojson/kabgresik.geojson'));
+
+        return view('dashboard', compact('geojsonData'));
     }
 
     public function create()

@@ -14,4 +14,5 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
+Route::get('/dashboard', [DashboardController::class ,'dashboard']);
 Route::get('/', [DashboardController::class ,'index']);

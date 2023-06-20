@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.26/"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <title>Document</title>
+    <title>Dashboard | GresikTaru</title>
 </head>
 
 <body>
